@@ -1,0 +1,17 @@
+version: "2"
+
+  mqtt-server-rpi:
+    image: krejcmat/rpi-mosquitto
+    build: Dockerfile
+    ports:
+      - "127.0.0.1:1883:1883"
+      - "127.0.0.1:1884:1884"
+      - "9001:9001"
+    volumes:
+      - ./mqtt-server/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
